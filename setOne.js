@@ -17,7 +17,7 @@ The code above is an example of 'function declaration.' Please re-write the func
 */
 
 // RE-WRITE THE ABOVE FUNCTION IN 'FUNCTION EXPRESSION' SYNTAX HERE.
-const findGrape = function (arr) {
+const findGrape2 = function (arr) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].color === "purple") {
       return console.log(
@@ -28,7 +28,7 @@ const findGrape = function (arr) {
 };
 
 // RE-WRITE THE ABOVE FUNCTION IN 'ARROW FUNCTION' SYNTAX HERE.
-const findGrape = (arr) => {
+const findGrape3 = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].color === "purple") {
       return console.log(
@@ -45,7 +45,12 @@ Write a one line function (give a name of your choice) with an implicit return t
 
 // CODE HERE
 
+const printThese = (thing1, thing2) =>
+  `The first parameter is ${thing1}.  The second parameter is ${thing2}`;
+
 // INVOKE THE FUNCTION HERE. THE PARAMETERS TAKE ANY DATATYPE.
+
+console.log(printThese(45, `fourty-five`));
 
 ////////// PROBLEM 3 //////////
 /*
@@ -54,8 +59,19 @@ Then, outside of the greeting function, invoke the greeting function, passing in
 */
 
 // CODE 'GREETING FUNCTION' HERE
+function greeting(firstName, lastName, callback) {
+  let fullName = `${firstName} ${lastName}`;
+
+  callback(fullName);
+}
+
+function printGreeting(name) {
+  console.log(`Hello, my full name is ${name}`);
+}
 
 // INVOKE 'GREETING FUNCTION' HERE
+
+greeting("Dan", "Beilfuss", printGreeting);
 
 ////////// PROBLEM 4 //////////
 
@@ -71,11 +87,33 @@ Write a function called 'pricesPlusTax' that takes 2 params: an array ('prices' 
 
 // CODE HERE
 
+const pricesPlusTax = (pricesArray, callback) => {
+  for (let price of pricesArray) {
+    totalCost.push(price * 1.2);
+  }
+
+  callback(totalCost);
+};
+
+const pricesPlusTax2 = (pricesArray, callback) => {
+  pricesArray.forEach(function (element) {
+    totalCost.push(element * 1.2);
+  });
+
+  callback(totalCost);
+};
+
+const printPrices = (these) => {
+  console.log(these);
+};
+
 /* 
 Invoke the 'pricesPlusTax' function, passing in the 'prices' array and a callback function (passing in 'totalCost' as a param) that will print "The new array plus tax = [totalCost]"
 */
 
 // CODE HERE
+// pricesPlusTax(prices, printPrices);
+pricesPlusTax2(prices, printPrices);
 
 ////////// PROBLEM 5 //////////
 
@@ -89,11 +127,18 @@ The inner function should run this logic: if the first number passing in is grea
 
 // CODE HERE
 
+const multiplyingFactory = (number, multiplyer) =>
+  number >= 5
+    ? number * multiplyer
+    : "Cannot multiply: the first number is smaller than 5.";
+
 /* 
-Let's invoke the 'multiplyingFactory' function that will return another function, and save it into a variable called 'timesFour.' Let's pass in number 3 as a param.
+Let's invoke the 'multiplyingFactory' function (the one that will return another function) and save it into a variable called 'timesFour.' Let's pass in number 3 as a param.
 */
 
 // CODE HERE
+const timesFour = (x) => multiplyingFactory(x, 4);
+const timesThree = (x) => multiplyingFactory(x, 3);
 
 /* 
 Now, timesFour is the new function (the inner function that was being returned when we invoked 'multiplyingFactory' function). The number 3 that we passed in as a first number is now saved in the 'timesFour' function. 
@@ -104,6 +149,8 @@ Run the code in node to see the printed result. You should see "Cannot multiply:
 */
 
 // INVOKE 'timesFour' HERE
+
+console.log(timesThree(5));
 
 /* 
 Change the param for 'multiplyingFactory' invocation to number 5. Then invoke 'timesFour' again, passing in number 4. Run the code in node, and you should see 20.
