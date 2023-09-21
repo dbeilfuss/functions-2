@@ -106,8 +106,8 @@ contains(names, "Colt", (result) => {
 // CODE HERE
 
 const uniq = (array, callback) => {
-  array.forEach((value, index) => {
-    // console.log(`checking for ${value} at position ${index}`);
+  array.forEach((index, templateIndex) => {
+    // console.log(`checking for ${index} at position ${templateIndex}`);
     for (let test = index + 1; test < array.length; test++) {
       // console.log(`cross-referencing with position ${test}`);
       if (array[test] === value) {
@@ -179,6 +179,8 @@ each(names, (item, index) => {
 
 // CODE HERE
 
+const addingFactory = (addend1, addend2) => addend1 + addend2;
+
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -193,6 +195,8 @@ each(names, (item, index) => {
 
 // CODE HERE
 
+const addTen = (number) => addingFactory(number, 10);
+
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -204,6 +208,8 @@ each(names, (item, index) => {
 */
 
 // CODE HERE
+
+console.log(addTen(3));
 
 /*
   Let's make another function from the addingFactory. 
@@ -217,6 +223,8 @@ each(names, (item, index) => {
 */
 
 // CODE HERE
+const addNumber = (number) => addingFactory(number, 47);
+console.log(addNumber(300));
 
 ////////// CHALLENGE 2 //////////
 
@@ -251,17 +259,21 @@ var users = [
 
 // CODE HERE
 
+const getUserById = (user, requestedID, callback) => {
+  callback(user.filter((obj) => obj.id === requestedID)[0]);
+};
+
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, "16t", (user) => {
-//   console.log(
-//     "The user with the id 16t has the email of " +
-//       user.email +
-//       " the name of " +
-//       user.name +
-//       " and the address of " +
-//       user.address
-//   );
-// });
+getUserById(users, "16t", (user) => {
+  console.log(
+    "The user with the id 16t has the email of " +
+      user.email +
+      " the name of " +
+      user.name +
+      " and the address of " +
+      user.address
+  );
+});
