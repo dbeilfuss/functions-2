@@ -105,6 +105,20 @@ contains(names, "Colt", (result) => {
 
 // CODE HERE
 
+const uniq = (array, callback) => {
+  array.forEach((value, index) => {
+    // console.log(`checking for ${value} at position ${index}`);
+    for (let test = index + 1; test < array.length; test++) {
+      // console.log(`cross-referencing with position ${test}`);
+      if (array[test] === value) {
+        array.splice(test, 1);
+        test -= 1;
+      }
+    }
+  });
+  callback(array);
+};
+
 /*
   Invoke the uniq function, passing in the names array from above and a callback function.
   The callback function should take in one parameter called uniqArr.
@@ -113,6 +127,11 @@ contains(names, "Colt", (result) => {
 */
 
 // CODE HERE
+uniq(names, (uniqArr) => {
+  console.log(
+    `The new names array with all the duplicate items removed is ${uniqArr}.`
+  );
+});
 
 ////////// PROBLEM 6 //////////
 
