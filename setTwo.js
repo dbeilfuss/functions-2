@@ -36,7 +36,7 @@ var names = ["Tyler", "Cahlan", "Ryan", "Colt", "Tyler", "Blaine", "Cahlan"];
 // CODE HERE
 
 const first = (array, callback) => {
-  callback(array);
+  callback(array[0]);
 };
 
 // UNCOMMENT THE FUNCTION CALL BELOW
@@ -56,13 +56,17 @@ first(names, (firstName) => {
 
 // CODE HERE
 
+const last = (array, callback) => {
+  callback(array[array.length - 1]);
+};
+
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// last(names, lastName => {
-//   console.log('The last name in names is ' + lastName)
-// })
+last(names, (lastName) => {
+  console.log("The last name in names is " + lastName);
+});
 
 ////////// PROBLEM 4 //////////
 
@@ -75,17 +79,21 @@ first(names, (firstName) => {
 
 // CODE HERE
 
+const contains = (array, nameVariable, callback) => {
+  callback(array.includes(nameVariable));
+};
+
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// contains(names, 'Colt', result => {
-//   if(result === true){
-//     console.log('Colt is in the array')
-//   } else {
-//     console.log('Colt is not in the array')
-//   }
-// })
+contains(names, "Colt", (result) => {
+  if (result === true) {
+    console.log("Colt is in the array");
+  } else {
+    console.log("Colt is not in the array");
+  }
+});
 
 ////////// PROBLEM 5 //////////
 
